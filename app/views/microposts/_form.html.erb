@@ -16,9 +16,11 @@
     <%= form.text_area :content, id: :micropost_content %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :micropost_user_id %>
+  <div class="row">
+    <div class="form-grouop col-md-3">
+      <%= form.label :user_id %>
+      <%= form.select :user_id, User.all.collect {|p| [ p.name, p.id ] } %>
+    </div>
   </div>
 
   <div class="actions">
