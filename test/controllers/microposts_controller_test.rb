@@ -1,12 +1,18 @@
 require 'test_helper'
 
-class MicropostsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @micropost = microposts(:one)
+class StaticPagesControllerTest < ActionDispatch::IntegrationTest
+  # setup do
+  #   @micropost = static_pages_home(:one)
+  # end
+
+  test "should get home" do
+    get static_pages_home_url
+    assert_response :success
+    assert_select "title", "RoR Tut Sample App"
   end
 
   test "should get index" do
-    get microposts_url
+    get static_pages_home_url
     assert_response :success
   end
 
@@ -17,7 +23,7 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create micropost" do
     assert_difference('Micropost.count') do
-      post microposts_url, params: { micropost: { content: @micropost.content, user_id: @micropost.user_id } }
+      post static_pages_home_url, params: { micropost: { content: @micropost.content, user_id: @micropost.user_id } }
     end
 
     assert_redirected_to micropost_url(Micropost.last)
@@ -43,6 +49,6 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
       delete micropost_url(@micropost)
     end
 
-    assert_redirected_to microposts_url
+    assert_redirected_to static_pages_home_url
   end
 end
